@@ -10,9 +10,13 @@ const DB_PATH = path.join(__dirname, '..', 'chinook.sqlite');
 
 const db = new sqlite3.Database(DB_PATH);
 
-const userInput = {};
+const userInput = {
+  column: process.argv[2],
+  index: process.argv[3],
+  entries: process.argv[4]
+};
 
-const queryString = ``;
+const queryString = `select ${userInput.column} from Artist where ArtistID >= ${userInput.index} limit ${userInput.entries} `;
 
 db.all(queryString, (err, rows) => {
   if (err) {
